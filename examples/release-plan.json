@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "goal": "Prepare a documentation release for a synthetic demo project",
+  "owner": "Demo maintainer",
+  "scope": "Only docs/ in a disposable demo repository; review each external or destructive action separately.",
+  "actions": [
+    {"id":"inspect","title":"Inspect the current documentation","tool":"file read","target":"docs/","effect":"read","dependsOn":[],"acceptance":"List changed pages and missing examples.","rollback":"No files are changed."},
+    {"id":"draft","title":"Draft release notes","tool":"file edit","target":"docs/release-notes.md","effect":"write","dependsOn":["inspect"],"acceptance":"Draft includes installation steps and an example.","rollback":"Restore the previous file from version control."},
+    {"id":"publish","title":"Publish the reviewed announcement","tool":"publishing service","target":"Demo project announcement channel","effect":"external","dependsOn":["draft"],"acceptance":"Maintainer has reviewed the exact final text and destination.","rollback":"A correction may be posted; delivery cannot be fully undone."},
+    {"id":"cleanup","title":"Remove obsolete draft","tool":"file delete","target":"docs/obsolete-draft.md","effect":"delete","dependsOn":["publish"],"acceptance":"The file is confirmed obsolete and backed up.","rollback":"Restore the backed-up file."}
+  ]
+}
