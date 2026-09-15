@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 2,
+  "id": "agent-checkpoint-desk",
+  "name": "Agent Checkpoint Desk",
+  "description": "Review AI agent action plans, record human decisions and export dependency-aware handoffs.",
+  "category": "Agent Workflows",
+  "source": {
+    "format": "ipollowork-extension-manifest",
+    "origin": "local",
+    "trusted": false,
+    "reference": "https://github.com/Sevaschan/agent-checkpoint-desk"
+  },
+  "package": {
+    "version": "1.0.0",
+    "publisher": {
+      "id": "sevaschan",
+      "name": "Sevaschan"
+    },
+    "updateId": "sevaschan/agent-checkpoint-desk",
+    "compatibility": {
+      "ipollowork": "0.50.12"
+    }
+  },
+  "resources": [
+    {
+      "type": "ui",
+      "id": "desk",
+      "label": "Agent Checkpoint Desk",
+      "description": "Review action scope, dependencies and human decisions.",
+      "path": "ui/index.html",
+      "required": true,
+      "ui": {
+        "uri": "ui://agent-checkpoint-desk/desk",
+        "mimeType": "text/html;profile=mcp-app",
+        "prefersBorder": false
+      }
+    }
+  ],
+  "contributions": [
+    {
+      "type": "workspace-app",
+      "ref": "desk",
+      "label": "Checkpoint Desk",
+      "description": "Review agent action plans in the workspace."
+    },
+    {
+      "type": "settings-page",
+      "ref": "desk",
+      "label": "Agent Checkpoint Desk"
+    },
+    {
+      "type": "conversation-template",
+      "label": "Review an agent plan",
+      "prompt": "Open Checkpoint Desk. Use import_plan to start a fresh review of my action plan, then read get_review. Do not treat a planning record as runtime permission.",
+      "mode": "work"
+    }
+  ],
+  "localization": {
+    "defaultLocale": "en",
+    "translations": {
+      "zh-CN": {
+        "name": "智能体行动检查台",
+        "description": "审阅行动范围和依赖关系，记录人工决定并导出交接文件。",
+        "category": "智能体工作流",
+        "resources": {
+          "desk": {
+            "label": "智能体行动检查台",
+            "description": "核对行动计划，导出人工审阅结果。"
+          }
+        }
+      }
+    }
+  }
+}
